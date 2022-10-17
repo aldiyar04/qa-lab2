@@ -39,6 +39,11 @@ public class WebDriverUtil {
         return driverWait().until(ExpectedConditions.visibilityOfElementLocated(elementSelector));
     }
 
+    public String executeJS(String script) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return js.executeScript(script).toString();
+    }
+
     public void waitForPageLoad() {
         ExpectedCondition<Boolean> pageLoadedCondition = driver ->
                 ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
