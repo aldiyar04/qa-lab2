@@ -49,6 +49,18 @@ public class WebDriverUtil {
         driver.switchTo().window(getCurrentWindow());
     }
 
+    public void openNewTabAndClosePrevTab(By redirectingElemSelector) {
+        String mainPageWindow = getCurrentWindow();
+        clickElement(redirectingElemSelector);
+        String secondWindow = getCurrentWindow();
+
+        driver.switchTo().window(mainPageWindow);
+        driver.close();
+
+        driver.switchTo().window(secondWindow);
+        waitForPageLoad();
+    }
+
     private String getCurrentWindow() {
         String supposedlyCurrent = driver.getWindowHandle();
         return driver.getWindowHandles().stream()

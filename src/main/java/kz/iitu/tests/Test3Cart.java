@@ -18,18 +18,9 @@ public class Test3Cart extends Test {
         clickElementIfDisplayed(By.id("onetrust-accept-btn-handler"));
         Thread.sleep(500);
 
-        String mainPageWindow = driver.getWindowHandle();
-        driverUtil.clickElement(By.cssSelector(".teaser:nth-child(5) #defaultButtonText"));
-
-        driverUtil.goToNewlyOpenedTab();
-        driverUtil.waitForPageLoad();
+        driverUtil.openNewTabAndClosePrevTab(By.cssSelector(".teaser:nth-child(5) #defaultButtonText"));
         clickElementIfDisplayed(By.className("notification-cookies__button-close"));
         Thread.sleep(500);
-        String secondWindow = driver.getWindowHandle();
-
-        driver.switchTo().window(mainPageWindow);
-        driver.close();
-        driver.switchTo().window(secondWindow);
 
 
         driverUtil.moveToElement(By.linkText("FOOTWEAR"));
