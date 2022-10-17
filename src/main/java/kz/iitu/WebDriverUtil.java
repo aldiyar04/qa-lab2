@@ -16,24 +16,33 @@ import java.time.Duration;
 public class WebDriverUtil {
     private final WebDriver driver;
 
-    public void moveToElementAndClick(By elementSelector) {
+    public WebElement moveToElement(By elementSelector) {
         WebElement element = driver.findElement(elementSelector);
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
-        clickElement(elementSelector);
+        return element;
     }
 
-    public void clickElement(By elementSelector) {
+    public WebElement clickElement(By elementSelector) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(elementSelector));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+        try {
+            ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+        } catch (Exception e) { // as a fallback for elements that are not supported by JS click() function:
+            element.click();
+        }
+
+        return element;
+    }
+
+    public WebElement waitForElementVisible(By elementSelector) {
+        return driverWait().until(ExpectedConditions.visibilityOfElementLocated(elementSelector));
     }
 
     public void waitForPageLoad() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         ExpectedCondition<Boolean> pageLoadedCondition = driver ->
                 ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-        wait.until(pageLoadedCondition);
+        driverWait().until(pageLoadedCondition);
     }
 
     public void goToNewlyOpenedTab() {
@@ -46,5 +55,9 @@ public class WebDriverUtil {
                 .filter(actual -> !actual.equalsIgnoreCase(supposedlyCurrent))
                 .findFirst()
                 .orElse(supposedlyCurrent);
+    }
+
+    private WebDriverWait driverWait() {
+        return new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 }
