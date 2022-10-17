@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static kz.iitu.WebDriverUtil.*;
-
 public class Test3Cart extends Test {
     public Test3Cart(WebDriver driver) {
         super(driver);
@@ -19,10 +17,10 @@ public class Test3Cart extends Test {
         Thread.sleep(500);
 
         String mainPageWindow = driver.getWindowHandle();
-        clickElement(By.cssSelector(".teaser:nth-child(5) #defaultButtonText"), driver);
+        driverUtil.clickElement(By.cssSelector(".teaser:nth-child(5) #defaultButtonText"));
 
-        goToNewlyOpenedTab(driver);
-        waitForPageLoad(driver);
+        driverUtil.goToNewlyOpenedTab();
+        driverUtil.waitForPageLoad();
         clickElementIfDisplayed(By.className("notification-cookies__button-close"));
         Thread.sleep(500);
         String secondWindow = driver.getWindowHandle();

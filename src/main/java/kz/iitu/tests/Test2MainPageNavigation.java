@@ -1,14 +1,12 @@
 package kz.iitu.tests;
 
 import kz.iitu.Test;
-import kz.iitu.WebDriverUtil;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static kz.iitu.Main.WEBSITE_BASE_URL;
-import static kz.iitu.WebDriverUtil.*;
 
 public class Test2MainPageNavigation extends Test {
     private String mainPageWindow;
@@ -51,22 +49,22 @@ public class Test2MainPageNavigation extends Test {
     }
 
     private void goToPage(By redirectingElemSelector) {
-        driver.findElement(redirectingElemSelector).click();
-        waitForPageLoad(driver);
+        driverUtil.clickElement(redirectingElemSelector);
+        driverUtil.waitForPageLoad();
         Assertions.assertNotEquals(driver.getCurrentUrl(), WEBSITE_BASE_URL);
     }
 
     private void goToMainPage() {
         WebElement websiteLogo = driver.findElement(By.cssSelector("img:nth-child(2)"));
         websiteLogo.click();
-        waitForPageLoad(driver);
+        driverUtil.waitForPageLoad();
         Assertions.assertEquals(driver.getCurrentUrl(), WEBSITE_BASE_URL);
     }
 
     private void goToPageInNewTabAndClose(By redirectingElemSelector) {
-        driver.findElement(redirectingElemSelector).click();
-        goToNewlyOpenedTab(driver);
-        waitForPageLoad(driver);
+        driverUtil.clickElement(redirectingElemSelector);
+        driverUtil.goToNewlyOpenedTab();
+        driverUtil.waitForPageLoad();
         Assertions.assertNotEquals(driver.getCurrentUrl(), WEBSITE_BASE_URL);
         driver.close();
         driver.switchTo().window(mainPageWindow);
