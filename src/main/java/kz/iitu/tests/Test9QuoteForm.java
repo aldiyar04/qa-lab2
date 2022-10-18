@@ -15,8 +15,8 @@ public class Test9QuoteForm extends Test {
 
     @Override
     public void execute() {
-        By selector = By.cssSelector(".responsivegrid:nth-child(2) .teaser:nth-child(4) #defaultButtonText");
-        driverUtil.clickElement(selector);
+        By openRentalPageSelector = By.cssSelector(".responsivegrid:nth-child(2) .teaser:nth-child(4) #defaultButtonText");
+        driverUtil.clickElement(openRentalPageSelector);
         By openRentalStoreSelector = By.linkText("Visit CatRentalStore.com");
         driverUtil.clickElement(openRentalStoreSelector);
 

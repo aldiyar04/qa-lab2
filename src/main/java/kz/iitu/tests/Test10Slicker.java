@@ -31,9 +31,6 @@ public class Test10Slicker extends Test {
         driverUtil.clickElement(openRebuildPageSelector);
         clickAcceptCookiesButtonIfPresent();
 
-        // TODO: select frame | index 1
-        // TODO: select frame | relative=parent
-
         selectSlickerWithVideo(2);
 
         for (int i = 0; i < slickersWithVideo.length; i++) {
