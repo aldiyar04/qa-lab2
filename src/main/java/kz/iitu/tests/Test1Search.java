@@ -17,14 +17,14 @@ public class Test1Search extends Test {
         super(driver);
     }
 
-    public void execute() throws InterruptedException {
+    public void execute() {
         WebElement searchIcon = driver.findElement(By.id("utility_links_search"));
         searchIcon.click();
 
         WebElement searchInput = driver.findElement(By.id("searchInput"));
         searchInput.sendKeys(SEARCH_KEYWORD);
         searchInput.sendKeys(Keys.RETURN);
-        Thread.sleep(2000);
+        driverUtil.waitMillis(2000);
 
         WebElement searchResultsDiv = driver.findElement(By.id("searchResultsDiv"));
         Assertions.assertNotNull(searchResultsDiv);
@@ -35,7 +35,7 @@ public class Test1Search extends Test {
 
         WebElement firstFilter = driver.findElement(By.cssSelector("ul.menu-list a"));
         firstFilter.click();
-        Thread.sleep(2000);
+        driverUtil.waitMillis(2000);
 
         int numMatchesWithFilter = getNumMatches();
         log.debug("Num matches with a filter: " + numMatchesWithFilter);
@@ -49,7 +49,7 @@ public class Test1Search extends Test {
         searchInput.clear();
         searchInput.sendKeys(NONSENSE_KEYWORD);
         searchInput.sendKeys(Keys.RETURN);
-        Thread.sleep(3000);
+        driverUtil.waitMillis(3000);
 
         WebElement noResultsBox = driver.findElement(By.id("noResultsBox"));
         Assertions.assertNotNull(noResultsBox);

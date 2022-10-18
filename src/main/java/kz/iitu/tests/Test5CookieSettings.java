@@ -14,7 +14,7 @@ public class Test5CookieSettings extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
         openCookieSettings();
 
         IntStream.range(0, 3).forEach(this::testEnableCookiesSwitchesOneByOne); // test each switch one by one

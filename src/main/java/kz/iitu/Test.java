@@ -16,5 +16,5 @@ public abstract class Test {
         driverUtil.waitForPageLoad();
     }
 
-    public abstract void execute() throws InterruptedException;
+    public abstract void execute();
 }

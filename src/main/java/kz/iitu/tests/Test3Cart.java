@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 public class Test3Cart extends Test {
     public Test3Cart(WebDriver driver) {
@@ -14,13 +13,13 @@ public class Test3Cart extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
         clickElementIfDisplayed(By.id("onetrust-accept-btn-handler"));
-        Thread.sleep(500);
+        driverUtil.waitMillis(500);
 
         driverUtil.openNewTabAndClosePrevTab(By.cssSelector(".teaser:nth-child(5) #defaultButtonText"));
         clickElementIfDisplayed(By.className("notification-cookies__button-close"));
-        Thread.sleep(500);
+        driverUtil.waitMillis(500);
 
 
         driverUtil.moveToElement(By.linkText("FOOTWEAR"));

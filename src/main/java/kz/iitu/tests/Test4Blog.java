@@ -12,7 +12,7 @@ public class Test4Blog extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
         By openCatUsedWebsiteSelector = By.cssSelector(".responsivegrid:nth-child(2) .teaser:nth-child(3) #defaultButtonText");
         driverUtil.openNewTabAndClosePrevTab(openCatUsedWebsiteSelector);
 
@@ -25,7 +25,7 @@ public class Test4Blog extends Test {
         By goToPageTopSelector = By.cssSelector(".fa-angle-up");
         driverUtil.clickElement(goToPageTopSelector);
 
-        Thread.sleep(1000); // wait for scrolling to top of page
+        driverUtil.waitMillis(1000); // wait for scrolling to top of page
 
         boolean isTopOfPage = Boolean.parseBoolean(driverUtil.executeJS("return window.pageYOffset === 0"));
         Assertions.assertTrue(isTopOfPage);

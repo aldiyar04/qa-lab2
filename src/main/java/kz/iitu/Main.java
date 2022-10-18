@@ -7,7 +7,7 @@ public class Main {
     public static final String WEBSITE_BASE_URL = "https://www.cat.com/en_IN.html";
     private static final int TEST_NUMBER = 6; // can be 1-10
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         WebDriver driver = initDriver();
         driver.manage().window().maximize();
 
