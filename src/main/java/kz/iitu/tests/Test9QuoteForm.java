@@ -9,7 +9,7 @@ public class Test9QuoteForm extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
 
     }
 }

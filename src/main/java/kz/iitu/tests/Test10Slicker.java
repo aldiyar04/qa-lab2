@@ -9,7 +9,7 @@ public class Test10Slicker extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
 
     }
 }

@@ -9,7 +9,7 @@ public class Test8FooterNavigation extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
 
     }
 }
