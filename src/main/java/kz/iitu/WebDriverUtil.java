@@ -1,6 +1,7 @@
 package kz.iitu;
 
 import lombok.AllArgsConstructor;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static kz.iitu.Main.WEBSITE_BASE_URL;
 
 @AllArgsConstructor
 public class WebDriverUtil {
@@ -78,6 +81,24 @@ public class WebDriverUtil {
         waitForPageLoad();
     }
 
+    public void openNewTabTestAndClose(By redirectingElemSelector, Callback... callbacks) {
+        String mainPageWindow = getCurrentWindow();
+        clickElement(redirectingElemSelector);
+        goToNewlyOpenedTab();
+        waitForPageLoad();
+
+        if (callbacks.length >= 1 && callbacks[0] != null) {
+            callbacks[0].doAction();;
+        }
+
+        driver.close();
+        driver.switchTo().window(mainPageWindow);
+
+        if (callbacks.length >= 2 && callbacks[1] != null) {
+            callbacks[1].doAction();;
+        }
+    }
+
     private String getCurrentWindow() {
         String supposedlyCurrent = driver.getWindowHandle();
         return driver.getWindowHandles().stream()
@@ -88,5 +109,10 @@ public class WebDriverUtil {
 
     private WebDriverWait driverWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(30));
+    }
+
+    @FunctionalInterface
+    public interface Callback {
+        void doAction();
     }
 }

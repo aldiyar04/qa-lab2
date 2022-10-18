@@ -62,13 +62,9 @@ public class Test2MainPageNavigation extends Test {
     }
 
     private void goToPageInNewTabAndClose(By redirectingElemSelector) {
-        driverUtil.clickElement(redirectingElemSelector);
-        driverUtil.goToNewlyOpenedTab();
-        driverUtil.waitForPageLoad();
-        Assertions.assertNotEquals(driver.getCurrentUrl(), WEBSITE_BASE_URL);
-        driver.close();
-        driver.switchTo().window(mainPageWindow);
-        Assertions.assertEquals(driver.getCurrentUrl(), WEBSITE_BASE_URL);
+        driverUtil.openNewTabTestAndClose(redirectingElemSelector,
+                () -> Assertions.assertNotEquals(driver.getCurrentUrl(), WEBSITE_BASE_URL),
+                () -> Assertions.assertEquals(driver.getCurrentUrl(), WEBSITE_BASE_URL));
     }
 
     private void clickAcceptCookiesButtonIfPresent() {
