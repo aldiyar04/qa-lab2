@@ -1,7 +1,6 @@
 package kz.iitu;
 
 import lombok.AllArgsConstructor;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-
-import static kz.iitu.Main.WEBSITE_BASE_URL;
 
 @AllArgsConstructor
 public class WebDriverUtil {

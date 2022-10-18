@@ -41,7 +41,7 @@ public class Test9QuoteForm extends Test {
 
         typeIntoEmailInput("a@a.aa");
         WebElement emailInputError = driver.findElement(By.id("email-error"));
-        Assertions.assertEquals("isNoEmailError", emailInputError.getText());
+        Assertions.assertTrue(emailInputError.getText() == null || emailInputError.getText().isBlank());
     }
 
     private void typeIntoEmailInputAndAssertError(String inputText) {

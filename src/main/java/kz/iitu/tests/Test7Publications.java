@@ -49,8 +49,6 @@ public class Test7Publications extends Test {
         driverUtil.clickElement(toggleDetailsSelector); // close details
         driverUtil.waitMillis(500);
         Assertions.assertFalse(driver.findElement(detailsSelector).isDisplayed());
-
-
     }
 
     private void clickAcceptCookiesButtonIfPresent() {
