@@ -39,6 +39,10 @@ public class WebDriverUtil {
         return driverWait().until(ExpectedConditions.visibilityOfElementLocated(elementSelector));
     }
 
+    public void waitForElementNotVisible(By elementSelector) {
+        driverWait().until(ExpectedConditions.invisibilityOfElementLocated(elementSelector));
+    }
+
     public String executeJS(String script) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return js.executeScript(script).toString();
@@ -48,6 +52,14 @@ public class WebDriverUtil {
         ExpectedCondition<Boolean> pageLoadedCondition = driver ->
                 ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
         driverWait().until(pageLoadedCondition);
+    }
+
+    public void waitMillis(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void goToNewlyOpenedTab() {
