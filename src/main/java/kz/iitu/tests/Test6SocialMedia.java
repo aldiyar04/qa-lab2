@@ -14,7 +14,7 @@ public class Test6SocialMedia extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
         By openSocialMediaLinksPage = By.linkText("Social Media");
         driverUtil.clickElement(openSocialMediaLinksPage);
         driverUtil.waitForPageLoad();
