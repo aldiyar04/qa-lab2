@@ -9,7 +9,7 @@ public class Test7Publications extends Test {
     }
 
     @Override
-    public void execute() throws InterruptedException {
+    public void execute() {
 
     }
 }
